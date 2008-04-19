@@ -10,4 +10,8 @@ namespace :tunnlr  do
   task :configure => :environment do
     Tunnlr::Configurator.new.configure(File.join(RAILS_ROOT,"config","tunnlr.yml"))
   end
+  task :ui => :environment do
+    require 'tunnlr/ui'
+    Tunnlr::Ui.new.main_loop
+  end
 end

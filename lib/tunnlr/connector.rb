@@ -10,7 +10,9 @@ module Tunnlr
     end
     
     def connect!
+      @should_disconnect=false
       Net::SSH.start(host,username,:password=>password) do |ssh|
+        puts "Connecting to #{username}@#{host} and sending #{remote_port}->#{local_port}"
         ssh.forward.remote(local_port,'127.0.0.1',remote_port,'0.0.0.0')
         ssh.loop {!@should_disconnect}
       end

@@ -42,6 +42,7 @@ module Tunnlr
           fetch(email,password)
           add_password
           write_config(path)
+          puts "Created configuration in #{path}"
           self.not_configured=false
         rescue Net::HTTPNotAcceptable=>e
           puts "Login failed, please try again"

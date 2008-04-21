@@ -12,6 +12,6 @@ namespace :tunnlr  do
   end
   task :ui => :environment do
     require 'tunnlr/ui'
-    Tunnlr::Ui.new.main_loop
+    Tunnlr::Ui::MainApp.new.main_loop
   end
 end

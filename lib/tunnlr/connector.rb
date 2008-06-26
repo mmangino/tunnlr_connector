@@ -15,7 +15,15 @@ module Tunnlr
         puts "Connecting to #{username}@#{host} and sending #{remote_port}->#{local_port}"
         ssh.forward.remote_to(local_port,'127.0.0.1',remote_port,'0.0.0.0')
         puts "You can view your tunneled connection at http://web1.tunnlr.com:#{remote_port}/"
-        ssh.loop {!@should_disconnect}
+        while true
+          begin
+            ssh.loop {!@should_disconnect}
+          rescue Interrupt=>e
+            raise
+          rescue Exception=>e
+            puts "Swallowing: #{e.class.to_s}"
+          end
+        end
       end
     end
     

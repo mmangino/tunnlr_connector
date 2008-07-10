@@ -33,6 +33,8 @@ module Tunnlr
           puts "Your connection was reset, trying to restart ..."
         end
       end
+    rescue Net::SSH::AuthenticationFailed=>e
+      puts "Unable to log in. Please check your password and try again."
     end
     
     def disconnect!

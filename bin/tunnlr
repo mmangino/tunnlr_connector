@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby -ws
+require 'rubygems'
+require 'tunnlr'
+RAILS_ROOT=Dir.pwd
+Tunnlr::Connector.new.connect!

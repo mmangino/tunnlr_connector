@@ -25,7 +25,7 @@ module Tunnlr
               rescue Interrupt=>e
                 raise
               rescue Exception=>e
-                puts "Swallowing: #{e.class.to_s}"
+                puts "Swallowing: #{e.class.to_s} => #{e.to_s}"
               end
             end
           end

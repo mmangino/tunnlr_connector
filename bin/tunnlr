@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby -ws
 require 'rubygems'
 require 'tunnlr'
-RAILS_ROOT=Dir.pwd
+class Rails
+  def self.root
+    @root
+  end
+  
+  def self.root=(val)
+    @root=val
+  end
+end
+Rails.root = Dir.pwd
 Tunnlr::Connector.new.connect!

@@ -42,7 +42,7 @@ module Tunnlr
     end
     
     def read_configuration
-      path = File.join(RAILS_ROOT, "config/tunnlr.yml")
+      path = File.join(::Rails.root.to_s, "config/tunnlr.yml")
       YAML.load(File.read(path))
     end
         

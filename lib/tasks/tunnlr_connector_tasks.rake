@@ -8,7 +8,7 @@ namespace :tunnlr  do
     Tunnlr::Connector.new.connect!
   end
   task :configure => :environment do
-    Tunnlr::Configurator.new.configure(File.join(RAILS_ROOT,"config","tunnlr.yml"))
+    Tunnlr::Configurator.new.configure(File.join(::Rails.root.to_s,"config","tunnlr.yml"))
   end
   task :ui => :environment do
     require 'tunnlr/ui'

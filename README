@@ -9,6 +9,34 @@ gem install --source http://gems.jamisbuck.org net-ssh
 
 To run autoconfigure, it also requires the highline gem which is installed as part of capistrano.
 
+Installation
+============
+
+Rails 2
+-------
+
+Add the gem to config/development.rb
+
+    config.gem 'tunnlr_connector', :lib => false
+
+And add the following to the end of Rakefile
+
+    begin
+      require 'tunnlr'
+      Tunnlr.load_tasks if defined?(Tunnlr)
+    rescue LoadError => loaderror
+      $stderr.puts %{Couldn't load tunnlr}
+    end
+    
+Rails 3
+-------
+
+Add the gem to the development group of your Gemfile
+
+    gem 'tunnlr_connector', :require => false
+    
+That's it!
+
 Example
 =======
 

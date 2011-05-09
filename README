@@ -33,7 +33,7 @@ Rails 3
 
 Add the gem to the development group of your Gemfile
 
-    gem 'tunnlr_connector', :require => false
+    gem 'tunnlr_connector', :require => "tunnlr"
     
 That's it!
 

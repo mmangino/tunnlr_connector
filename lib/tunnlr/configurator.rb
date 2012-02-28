@@ -8,7 +8,7 @@ module Tunnlr
       @not_configured=true
     end
     
-    def fetch(username,password)
+    def fetch(subdomain,username,password)
       url=URI.parse("http://#{subdomain}.tunnlr.com/configuration.yml")
       req = Net::HTTP::Get.new(url.path)
       req.basic_auth(username,password)
@@ -33,7 +33,7 @@ module Tunnlr
       self.subdomain = @ui.ask("Subdomain (i.e. elevatedrails for elevatedrails.tunnlr.com): ") 
       self.email = @ui.ask("Email: ") 
       self.password = @ui.ask("Password: ") { |q| q.echo = false }
-      fetch(email,password)
+      fetch(subdomain,email,password)
     end
     
     def configure(path)

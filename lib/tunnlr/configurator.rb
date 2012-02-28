@@ -40,7 +40,7 @@ module Tunnlr
       while not_configured
         begin
           get_credentials
-          fetch(subdomain,email,password)
+          fetch(email,password)
           add_password
           write_config(path)
           puts "Created configuration in #{path}"

@@ -13,7 +13,7 @@ module Tunnlr
       url=URI.parse("https://#{subdomain}.tunnlr.com/configuration.yml")
       req = Net::HTTP::Get.new(url.path)
       req.basic_auth(username,password)
-      res = Net::HTTP.start(url.host, url.port) {|http|
+      res = Net::HTTP.start(url.host, url.port, :verify_mode => OpenSSL::SSL::VERIFY_NONE, :use_ssl => url.scheme == 'https') {|http|
             http.request(req)
           }
       @configuration = res.body

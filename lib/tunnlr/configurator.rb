@@ -1,5 +1,6 @@
 require 'highline'
 require 'net/ssh'
+require "net/http"
 module Tunnlr
   class Configurator
     attr_accessor :not_configured,:email,:password,:subdomain
@@ -9,7 +10,7 @@ module Tunnlr
     end
     
     def fetch(subdomain,username,password)
-      url=URI.parse("http://#{subdomain}.tunnlr.com/configuration.yml")
+      url=URI.parse("https://#{subdomain}.tunnlr.com/configuration.yml")
       req = Net::HTTP::Get.new(url.path)
       req.basic_auth(username,password)
       res = Net::HTTP.start(url.host, url.port) {|http|
@@ -23,6 +24,7 @@ module Tunnlr
     end
     
     def write_config(path)
+      puts "Going to write: #{@configuration}"
       open(path,"w+") do |f|
         f.puts(@configuration)
       end
@@ -40,7 +42,7 @@ module Tunnlr
       while not_configured
         begin
           get_credentials
-          fetch(email,password)
+          fetch(subdomain, email,password)
           add_password
           write_config(path)
           puts "Created configuration in #{path}"
